@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario Mauroflex</title>
+    <style>
+        body { font-family: sans-serif; margin: 30px; background-color: #f8f9fa; }
+        h1 { color: #2c3e50; }
+        form { background: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input { padding: 10px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; background-color: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #34495e; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Colchones Mauroflex - Inventario</h1>
+    
+    <form action="/agregar" method="POST">
+        <input type="text" name="referencia" placeholder="Referencia del colchón" required>
+        <input type="number" name="cantidad" placeholder="Cantidad" required>
+        <button type="submit">Registrar Colchón</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Referencia</th>
+                <th>Stock</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% colchones.forEach(colchon => { %>
+                <tr>
+                    <td><%= colchon.referencia %></td>
+                    <td><%= colchon.cantidad %> unidades</td>
+                    <td><%= colchon.fechaRegistro.toLocaleDateString() %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
